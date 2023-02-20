@@ -18,7 +18,7 @@ class BaseModel:
     def __str__(self):
         '''Method that return a string to print the instance.'''
 
-        return f'[{self.__class__. __name__}]({self.id}) {self.__dict__}'
+        return f'[{self.__class__.__name__}]({self.id}) {self.__dict__}'
 
     def save(self):
         '''
