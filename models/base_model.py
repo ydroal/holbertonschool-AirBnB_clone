@@ -10,7 +10,7 @@ class BaseModel:
 
     def __init__(self, *args, **kargs):
         '''Initialize'''
-        if kwargs != 0:
+        if kwargs is not None:
             for key, value in kwargs.items():
                 if key == "__class__":
                     continue
@@ -41,5 +41,5 @@ class BaseModel:
         res['__class__'] = __class__.__name__
         res['created_at'] = datetime.isoformat(self.created_at)
         res['updated_at'] = datetime.isoformat(self.updated_at)
-        
+
         return res
