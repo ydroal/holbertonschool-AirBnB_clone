@@ -8,7 +8,7 @@ import cmd
 
 
 class HBNBCommand(cmd.Cmd):
-    """Tha class that Handle the starting
+    """ Tha class that Handle the starting
         and how leave the the program at the end.
     """
     prompt = "(hbnb)"
@@ -19,8 +19,8 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, line):
         """ Quit command to exit the program """
         return True
-    def No_emptyline(self, line)
-        """"Do nothing when we have empty line, and/or + space """
+    def No_emptyline(self, line):
+        """" Do nothing when we have empty line, and/or + space """
         pass
 
 if __name__ == '__main__':
