@@ -17,7 +17,7 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, line):
         """ Quit command to exit the program """
         return True
-    def do_umptyline(self, line)
+    def No_umptyline(self, line)
         """"Do nothing when we have umty line, and/or + space """
         pass
 
