@@ -3,6 +3,7 @@
 
 import uuid
 from datetime import datetime
+import models
 
 
 class BaseModel:
@@ -10,15 +11,27 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         '''Initialize'''
+
         if len(kwargs) != 0:
             for key, value in kwargs.items():
-                if key == "__class__":
-                    continue
-                setattr(self, key, value)
+                if key == "id":
+                    self.id = value
+                if key == "created_at":
+                    self.created_at = datetime.strptime(
+                        value, "%Y-%m-%dT%H:%M:%S.%f")
+                if key == "updated_at":
+                    self.updated_at = datetime.strptime(
+                        value, "%Y-%m-%dT%H:%M:%S.%f")
+                if key == "my_number":
+                    self.my_number = value
+                if key == "name":
+                    self.name = value
+
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def __str__(self):
         '''Method that return a string to print the instance.'''
@@ -31,6 +44,7 @@ class BaseModel:
         with the current datetime
         '''
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         '''
