@@ -16,12 +16,15 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, line):
         """ EOF command to exit the program """
         return True
+
     def do_quit(self, line):
         """ Quit command to exit the program """
+
         return True
-    def No_emptyline(self, line):
+    def do_empty_line(self, line):
         """" Do nothing when we have empty line, and/or + space """
         pass
+
 
 if __name__ == '__main__':
         HBNBCommand().cmdloop()
