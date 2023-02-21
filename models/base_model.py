@@ -8,9 +8,13 @@ from datetime import datetime
 class BaseModel:
     '''Define a BaseModel'''
 
-    def __init__(self, id=None, created_at=None, updated_at=None, ):
+    def __init__(self, *args, **kargs):
         '''Initialize'''
-
+        if kwargs != 0:
+            for key, value in kwargs.items():
+                if key == "__class__":
+                    continue
+                setattr(self, key, value)
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
@@ -37,5 +41,5 @@ class BaseModel:
         res['__class__'] = __class__.__name__
         res['created_at'] = datetime.isoformat(self.created_at)
         res['updated_at'] = datetime.isoformat(self.updated_at)
-
+        
         return res
