@@ -10,11 +10,10 @@ class BaseModel:
 
     def __init__(self, *args, **kargs):
         '''Initialize'''
-        if kwargs:
-            for key, value in kwargs.items():
-                if key == "__class__":
-                    continue
-                setattr(self, key, value)
+        for key, value in kwargs.items():
+            if key == "__class__":
+                continue
+            setattr(self, key, value)
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
