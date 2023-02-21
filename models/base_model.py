@@ -8,16 +8,17 @@ from datetime import datetime
 class BaseModel:
     '''Define a BaseModel'''
 
-    def __init__(self, *args, **kargs):
+    def __init__(self, *args, **kwargs):
         '''Initialize'''
-        if kwargs != 0:
+        if len(kwargs) != 0:
             for key, value in kwargs.items():
                 if key == "__class__":
                     continue
                 setattr(self, key, value)
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         '''Method that return a string to print the instance.'''
@@ -41,5 +42,5 @@ class BaseModel:
         res['__class__'] = __class__.__name__
         res['created_at'] = datetime.isoformat(self.created_at)
         res['updated_at'] = datetime.isoformat(self.updated_at)
-        
+
         return res

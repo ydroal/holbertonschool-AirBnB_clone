@@ -1,16 +1,15 @@
 #!/usr/bin/python3
 """ 
 The entry point of the command interpreter
-""" 
-
+"""
 
 import cmd
- 
- 
+
+
 class HBNBCommand(cmd.Cmd):
-    """Tha class that Handle the starting 
+    """Tha class that Handle the starting
         and how leave the the program at the end.
-    """ 
+    """
     prompt = "(hbnb)"
 
     def do_EOF(self, line):
@@ -23,6 +22,6 @@ class HBNBCommand(cmd.Cmd):
         """"Do nothing when we have umty line, and/or + space """
         pass
 
-    
+
 if __name__ == '__main__':
         HBNBCommand().cmdloop()
