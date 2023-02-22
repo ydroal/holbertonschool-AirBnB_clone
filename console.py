@@ -13,7 +13,7 @@ class HBNBCommand(cmd.Cmd):
         and how leave the the program at the end.
     """
 
-    list_class = ['BaseModel']
+    list_class = ['BaseModel', 'User']
     list_function = ['create']
 
     prompt = "(hbnb)"
@@ -32,7 +32,7 @@ class HBNBCommand(cmd.Cmd):
         if len(line) == 0:
             print('** class name missing **')
 
-        elif line not in HBNBCommand.list_class:
+        elif line not in self.list_class:
             print("** class doesn't exist **")
 
         else:
@@ -52,7 +52,7 @@ class HBNBCommand(cmd.Cmd):
         if len(line) == 0:
             print('** class name missing **')
 
-        elif line[0] not in HBNBCommand.list_class:
+        elif line[0] not in self.list_class:
             print('** class doesn\'t exist **')
 
         elif len(line) < 2:
@@ -74,7 +74,7 @@ class HBNBCommand(cmd.Cmd):
         if len(line) == 0:
             print('** class name missing **')
 
-        elif line[0] not in HBNBCommand.list_class:
+        elif line[0] not in self.list_class:
             print('** class doesn\'t exist **')
 
         elif len(line) < 2:
@@ -88,21 +88,29 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print('** no instance found **')
 
+    def do_all(self, line):
+        '''
+        Prints all string representation of all instances based
+        or not on the class name.
+        '''
+
+        line = line.split()
+        obj_dict = storage.all()
+
+        if len(line) == 0:
+            print([str(obj) for obj in obj_dict.values()])
+        elif line[0] not in self.list_class:
+            print('** class doesn\'t exist **')
+        else:
+            print([str(obj) for obj in obj_dict.values()
+                  if type(obj).__name__ == line[0]])
+
+    def do_update(self, line):
+        line = line.split()
+
     def do_EOF(self, line):
         """ EOF command to exit the program """
         return True
-
-    def do_all(self, line):
-        """  """
-        lines = line.split()
-        obj_dict = storage.all()
-        if len(lines) == 0:
-            print([str(obj) for obj in obj_dict.values()])
-        elif lines[0] not in self.list_class:
-            print("** class doesn't exist **")
-        else:
-            print([str(obj) for obj in obj_dict.values()
-                   if type(obj).__name__== lines[0]])
 
 
 if __name__ == '__main__':
