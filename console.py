@@ -92,6 +92,18 @@ class HBNBCommand(cmd.Cmd):
         """ EOF command to exit the program """
         return True
 
+    def do_all(self, line):
+        """  """
+        lines = line.split()
+        obj_dict = storage.all()
+        if len(lines) == 0:
+            print([str(obj) for obj in obj_dict.values()])
+        elif lines[0] not in self.class_name:
+            print("** class doesn't exist **")
+        else:
+            print([str(obj) for obj in obj_dict.values()
+                   if type(obj).__name__== lines[0]])
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
