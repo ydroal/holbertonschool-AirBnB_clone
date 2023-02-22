@@ -47,6 +47,8 @@ class HBNBCommand(cmd.Cmd):
         '''
 
         line = line.split()
+        obj_dict = storage.all()
+
         if len(line) == 0:
             print('** class name missing **')
 
@@ -57,18 +59,18 @@ class HBNBCommand(cmd.Cmd):
             print('** instance id missing **')
 
         else:
-            obj_id = line[1]
-            try:
-                obj_dict = storage.all()[line[0] + '.' + obj_id]
-            except KeyError:
+            k = '{}.{}'.format(line[0], line[1])
+            if k in obj_dict:
+                print(obj_dict[k])
+            else:
                 print('** no instance found **')
-
-            print(obj_dict)
 
     def do_destroy(self, line):
         '''Deletes an instance based on the class name and id'''
 
         line = line.split()
+        obj_dict = storage.all()
+
         if len(line) == 0:
             print('** class name missing **')
 
@@ -79,13 +81,12 @@ class HBNBCommand(cmd.Cmd):
             print('** instance id missing **')
 
         else:
-            obj_id = line[1]
-            try:
-                obj_dict = storage.all()[line[0] + '.' + obj_id]
-            except KeyError:
+            k = '{}.{}'.format(line[0], line[1])
+            if k in obj_dict:
+                del obj_dict[k]
+                storage.save()
+            else:
                 print('** no instance found **')
-
-            del obj_dict
 
     def do_EOF(self, line):
         """ EOF command to exit the program """
