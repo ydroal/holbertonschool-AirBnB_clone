@@ -98,7 +98,7 @@ class HBNBCommand(cmd.Cmd):
         obj_dict = storage.all()
         if len(lines) == 0:
             print([str(obj) for obj in obj_dict.values()])
-        elif lines[0] not in self.class_name:
+        elif lines[0] not in self.list_class:
             print("** class doesn't exist **")
         else:
             print([str(obj) for obj in obj_dict.values()
