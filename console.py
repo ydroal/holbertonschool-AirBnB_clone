@@ -6,6 +6,10 @@ The entry point of the command interpreter
 import cmd
 from models.base_model import BaseModel
 from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
 from models import storage
 
 
@@ -14,7 +18,7 @@ class HBNBCommand(cmd.Cmd):
         and how leave the the program at the end.
     """
 
-    list_class = ['BaseModel', 'User']
+    list_class = ['BaseModel', 'User', 'Place', 'State', 'City', 'Amenity']
     list_function = ['create']
 
     prompt = "(hbnb)"
@@ -122,6 +126,7 @@ class HBNBCommand(cmd.Cmd):
             print('** instance id missing **')
             return
 
+        k = '{}.{}'.format(line[0], line[1])
         if k not in obj_dict:
             print('** no instance found **')
             return
@@ -134,7 +139,6 @@ class HBNBCommand(cmd.Cmd):
             print('** value missing **')
             return
 
-        k = '{}.{}'.format(line[0], line[1])
         update_attr = line[2]
         update_value = line[3]
         setattr(obj_dict[k], update_attr, update_value)
