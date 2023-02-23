@@ -126,7 +126,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(line) < 2:
             print('** attribute name missing **')
 
-        elif len(line) < 3:
+        elif len(line) == 3:
             print('** value missing **')
 
         else:
