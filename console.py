@@ -119,40 +119,41 @@ class HBNBCommand(cmd.Cmd):
            by adding or updating attribute
         '''
 
-        line = line.split()
-        obj_dict = storage.all()
+        lines = line.split()
+        obj_all = storage.all()
 
-        if len(line) == 0:
+        # Vérification de la présence du nom de classe.
+        if len(lines) == 0:
             print('** class name missing **')
             return
 
-        if line[0] not in self.list_class:
+        class_name = lines[0]
+        if class_name not in self.list_class:
             print('** class doesn\'t exist **')
             return
 
-        if len(line) == 1:
+        if len(lines) == 1:
             print('** instance id missing **')
             return
 
-        if k not in obj_dict:
+        id = lines[1]
+        key = '{}.{}'.format(class_name, id)
+        if key not in obj_all:
             print('** no instance found **')
             return
 
-        if len(line) == 2:
+        if len(lines) == 2:
             print('** attribute name missing **')
             return
-
-        if len(line) == 3:
+        if len(lines) == 3:
             print('** value missing **')
             return
 
-        k = '{}.{}'.format(line[0], line[1])
-        update_attr = line[2]
-        update_value = line[3]
-        setattr(obj_dict[k], update_attr, update_value)
-        obj_dict[k].save()
+        name = lines[2]
+        name_value = lines[3]
+        setattr(obj_all[key], name, name_value)
+        obj_all[key].save()
 
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-
