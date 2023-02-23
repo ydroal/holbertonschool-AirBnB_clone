@@ -109,6 +109,7 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, line):
         line = line.split()
         obj_dict = storage.all()
+        k = '{}.{}'.format(line[0], line[1])
 
         if len(line) == 0:
             print('** class name missing **')
@@ -119,8 +120,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(line) < 1:
             print('** instance id missing **')
 
-        k = '{}.{}'.format(line[0], line[1])
-        if k not in obj_dict:
+        elif k not in obj_dict:
             print('** no instance found **')
 
         elif len(line) < 2:
