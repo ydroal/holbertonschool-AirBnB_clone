@@ -13,6 +13,7 @@ from models.amenity import Amenity
 from models.review import Review
 from models import storage
 from models.engine.file_storage import FileStorage
+import models
 
 
 class HBNBCommand(cmd.Cmd):
