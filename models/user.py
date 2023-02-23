@@ -2,6 +2,7 @@
 '''Module to define a User class'''
 
 from models.base_model import BaseModel
+import email
 
 
 class User(BaseModel):
