@@ -11,6 +11,7 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models import storage
+import models
 
 
 class HBNBCommand(cmd.Cmd):
@@ -19,7 +20,7 @@ class HBNBCommand(cmd.Cmd):
     """
 
     list_class = ['BaseModel', 'User', 'Place', 'State', 'City', 'Amenity']
-    list_function = ['create']
+    list_function = ['create', 'show', 'destroy', 'update', 'all']
 
     prompt = "(hbnb)"
 
