@@ -10,21 +10,24 @@ class BaseModel:
     '''Define a BaseModel'''
 
     def __init__(self, *args, **kwargs):
-        '''
-        check if there is **kwargs (Instances are created by dictionaries)
-        if key is created_at or updated_at -> change str to datetime
-        set the attributes with key and values using setattr() .
-        '''
+        '''Initialize'''
 
-        if kwargs:
+        if len(kwargs) != 0:
             for key, value in kwargs.items():
-                if key == 'created_at' or key == 'updated_at':
-                    """convertie l'objet en datatime"""
-                    value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
-                if key != '__class__':
-                    setattr(self, key, value)
+                if key == "id":
+                    self.id = value
+                if key == "created_at":
+                    self.created_at = datetime.strptime(
+                        value, "%Y-%m-%dT%H:%M:%S.%f")
+                if key == "updated_at":
+                    self.updated_at = datetime.strptime(
+                        value, "%Y-%m-%dT%H:%M:%S.%f")
+                if key == "my_number":
+                    self.my_number = value
+                if key == "name":
+                    self.name = value
 
-        if not kwargs:
+        else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
@@ -55,4 +58,3 @@ class BaseModel:
         res['updated_at'] = datetime.isoformat(self.updated_at)
 
         return res
-
