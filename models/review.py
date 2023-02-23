@@ -4,7 +4,7 @@
 from models.base_model import BaseModel
 
 
-class Review:
+class Review(BaseModel):
     '''Define a Review'''
 
     place_id = ''
