@@ -20,8 +20,8 @@ class HBNBCommand(cmd.Cmd):
         and how leave the the program at the end.
     """
 
-    list_class = ['BaseModel', 'User', 'Place',
-                  'State', 'City', 'Amenity', 'Review']
+    list_class = ['BaseModel', 'User', 'State',
+                  'City', 'Amenity', 'Place', 'Review']
     list_function = ['create', 'show', 'destroy', 'update', 'all']
 
     prompt = "(hbnb)"
@@ -49,31 +49,29 @@ class HBNBCommand(cmd.Cmd):
             print(new_instance.id)
 
     def do_show(self, line):
-        '''
-        Prints the string representation of an instance based on
-        the class name and id
-        '''
+        """On va recuper le dictionnaire d'une id d'une class"""
+        lines = line.split()
 
-        line = line.split()
-        obj_dict = storage.all()
-
-        if len(line) == 0:
-            print('** class name missing **')
+        if not line:
+            print("** class name missing **")
             return
 
-        if line[0] not in self.list_class:
-            print('** class doesn\'t exist **')
+        class_name = lines[0]
+        if class_name not in self.list_class:
+            print("** class doesn't exist **")
             return
 
-        if len(line) < 2:
-            print('** instance id missing **')
+        if len(lines) < 2:
+            print("** instance id missing **")
             return
 
-        k = '{}.{}'.format(line[0], line[1])
-        if k in obj_dict:
-            print(obj_dict[k])
-        else:
-            print('** no instance found **')
+        id = lines[1]
+        key = "{}.{}".format(class_name, id)
+        obj_all = models.storage.all()
+        if key not in obj_all:
+            print("** no instance found **")
+            return
+        print(obj_all[key])
 
     def do_destroy(self, line):
         '''Deletes an instance based on the class name and id'''
@@ -118,42 +116,46 @@ class HBNBCommand(cmd.Cmd):
                   if type(obj).__name__ == line[0]])
 
     def do_update(self, line):
-        line = line.split()
-        obj_dict = storage.all()
+        """met à jour une instance en fonction"""
 
-        if len(line) == 0:
-            print('** class name missing **')
+        lines = line.split()
+        obj_all = models.storage.all()
+
+        # Vérification de la présence du nom de classe.
+        if len(lines) == 0:
+            print("** class name missing **")
             return
 
-        if line[0] not in self.list_class:
-            print('** class doesn\'t exist **')
+        class_name = lines[0]
+        if class_name not in self.list_class:
+            print("** class doesn't exist **")
             return
 
-        if len(line) == 1:
-            print('** instance id missing **')
+        # Vérification de la présence de l'id.
+        if len(lines) == 1:
+            print("** instance id missing **")
             return
 
-        k = '{}.{}'.format(line[0], line[1])
-        if k not in obj_dict:
-            print('** no instance found **')
+        # Vérification de la class
+        id = lines[1]
+        key = "{}.{}".format(class_name, id)
+        if key not in obj_all:
+            print("** no instance found **")
             return
 
-        if len(line) == 2:
-            print('** attribute name missing **')
+        # Vérification de la présence de l'attribut et de sa valeur.
+        if len(lines) == 2:
+            print("** attribute name missing **")
+            return
+        if len(lines) == 3:
+            print("** value missing **")
             return
 
-        if len(line) == 3:
-            print('** value missing **')
-            return
+        name = lines[2]
+        name_value = lines[3]
 
-        update_attr = line[2]
-        update_value = line[3]
-        setattr(obj_dict[k], update_attr, update_value)
-        obj_dict[k].save()
-
-    def do_EOF(self, line):
-        """ EOF command to exit the program """
-        return True
+        setattr(obj_all[key], name, name_value)
+        obj_all[key].save()
 
 
 if __name__ == '__main__':
