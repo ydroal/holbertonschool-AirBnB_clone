@@ -10,6 +10,7 @@ from models.place import Place
 from models.state import State
 from models.city import City
 from models.amenity import Amenity
+from models.review import Review
 from models import storage
 import models
 
@@ -19,7 +20,8 @@ class HBNBCommand(cmd.Cmd):
         and how leave the the program at the end.
     """
 
-    list_class = ['BaseModel', 'User', 'Place', 'State', 'City', 'Amenity']
+    list_class = ['BaseModel', 'User', 'Place',
+                  'State', 'City', 'Amenity', 'Review']
     list_function = ['create', 'show', 'destroy', 'update', 'all']
 
     prompt = "(hbnb)"
