@@ -15,7 +15,7 @@ class FileStorage:
     '''Define a FileStorage'''
 
     __file_path = 'file.json'
-    __objects: Dict[str, Any] = {}
+    __objects = {""}
 
     def all(self):
         '''Method returns the dictionary __objects'''
