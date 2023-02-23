@@ -129,10 +129,11 @@ class HBNBCommand(cmd.Cmd):
         elif len(line) < 3:
             print('** value missing **')
 
-        update_attr = line[2]
-        update_value = line[3]
-        setattr(obj_dict[k], update_attr, update_value)
-        obj_dict[k].save()
+        else:
+            update_attr = line[2]
+            update_value = line[3]
+            setattr(obj_dict[k], update_attr, update_value)
+            obj_dict[k].save()
 
     def do_EOF(self, line):
         """ EOF command to exit the program """
