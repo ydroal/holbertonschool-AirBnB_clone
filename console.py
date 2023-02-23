@@ -109,31 +109,36 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, line):
         line = line.split()
         obj_dict = storage.all()
-        k = '{}.{}'.format(line[0], line[1])
 
         if len(line) == 0:
             print('** class name missing **')
+            return
 
-        elif line[0] not in self.list_class:
+        if line[0] not in self.list_class:
             print('** class doesn\'t exist **')
+            return
 
-        elif len(line) == 1:
+        if len(line) == 1:
             print('** instance id missing **')
+            return
 
-        elif k not in obj_dict:
+        if k not in obj_dict:
             print('** no instance found **')
+            return
 
-        elif len(line) == 2:
+        if len(line) == 2:
             print('** attribute name missing **')
+            return
 
-        elif len(line) == 3:
+        if len(line) == 3:
             print('** value missing **')
+            return
 
-        else:
-            update_attr = line[2]
-            update_value = line[3]
-            setattr(obj_dict[k], update_attr, update_value)
-            obj_dict[k].save()
+        k = '{}.{}'.format(line[0], line[1])
+        update_attr = line[2]
+        update_value = line[3]
+        setattr(obj_dict[k], update_attr, update_value)
+        obj_dict[k].save()
 
     def do_EOF(self, line):
         """ EOF command to exit the program """
