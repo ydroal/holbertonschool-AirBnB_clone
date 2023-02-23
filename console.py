@@ -59,19 +59,21 @@ class HBNBCommand(cmd.Cmd):
 
         if len(line) == 0:
             print('** class name missing **')
+            return
 
-        elif line[0] not in self.list_class:
+        if line[0] not in self.list_class:
             print('** class doesn\'t exist **')
+            return
 
-        elif len(line) < 2:
+        if len(line) < 2:
             print('** instance id missing **')
+            return
 
+        k = '{}.{}'.format(line[0], line[1])
+        if k in obj_dict:
+            print(obj_dict[k])
         else:
-            k = '{}.{}'.format(line[0], line[1])
-            if k in obj_dict:
-                print(obj_dict[k])
-            else:
-                print('** no instance found **')
+            print('** no instance found **')
 
     def do_destroy(self, line):
         '''Deletes an instance based on the class name and id'''
@@ -85,7 +87,7 @@ class HBNBCommand(cmd.Cmd):
         elif line[0] not in self.list_class:
             print('** class doesn\'t exist **')
 
-        elif len(line) < 2:
+        elif len(line) == 2:
             print('** instance id missing **')
 
         else:
