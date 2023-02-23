@@ -117,13 +117,13 @@ class HBNBCommand(cmd.Cmd):
         elif line[0] not in self.list_class:
             print('** class doesn\'t exist **')
 
-        elif len(line) < 1:
+        elif len(line) == 1:
             print('** instance id missing **')
 
         elif k not in obj_dict:
             print('** no instance found **')
 
-        elif len(line) < 2:
+        elif len(line) == 2:
             print('** attribute name missing **')
 
         elif len(line) == 3:
