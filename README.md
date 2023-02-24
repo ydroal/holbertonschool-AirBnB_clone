@@ -190,14 +190,14 @@ Let's see what happens when you want to create a new object using the **`creat`*
 
 ## `Resources `   :earth_africa:
 
-### [Python packages](https://intranet.hbtn.io/concepts/66).
-### [AirBnB clone](https://intranet.hbtn.io/concepts/74).
-### [cmd module](https://intranet.hbtn.io/rltoken/_mUwX-Mn69bDBP5iTQmCJA).
-### [uuid module](https://intranet.hbtn.io/rltoken/4HNpF8nsTMociNaTgMYAeQ).
-### [datetime](https://intranet.hbtn.io/rltoken/xnmMG0Qin2K9CxXdmQoZkA).
-### [unittest module](https://intranet.hbtn.io/rltoken/MKNUT1FRSdUiGIpwMmrtgw).
-### [args/kwargs](https://intranet.hbtn.io/rltoken/mY-8n8I-ohQIjkUOqcK6Rw).
-### [Python test cheatsheet](https://intranet.hbtn.io/rltoken/9PsyQoeiVNhWGcj_1PkZJg).
+#### [Python packages](https://intranet.hbtn.io/concepts/66).
+#### [AirBnB clone](https://intranet.hbtn.io/concepts/74).
+#### [cmd module](https://intranet.hbtn.io/rltoken/_mUwX-Mn69bDBP5iTQmCJA).
+#### [uuid module](https://intranet.hbtn.io/rltoken/4HNpF8nsTMociNaTgMYAeQ).
+#### [datetime](https://intranet.hbtn.io/rltoken/xnmMG0Qin2K9CxXdmQoZkA).
+#### [unittest module](https://intranet.hbtn.io/rltoken/MKNUT1FRSdUiGIpwMmrtgw).
+#### [args/kwargs](https://intranet.hbtn.io/rltoken/mY-8n8I-ohQIjkUOqcK6Rw).
+#### [Python test cheatsheet](https://intranet.hbtn.io/rltoken/9PsyQoeiVNhWGcj_1PkZJg).
 
 
 ## :spider_web: :fist_raised:
