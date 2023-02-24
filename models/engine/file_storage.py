@@ -45,8 +45,8 @@ class FileStorage:
         '''
 
         try:
-            with open(self.__file_path) as f:
-                new_dict = json.load(f)
+            with open(self.__file_path, encoding="utf-8") as json_file2:
+                new_dict = json.load(json_file2)
                 cls = '__class__'
                 for key, value in new_dict.items():
                     self.__objects[key] = eval(value[cls] + '(**value)')
