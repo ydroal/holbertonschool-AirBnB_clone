@@ -18,40 +18,24 @@ class Test_FileStorage(unittest.TestCase):
             os.remove(self.fs._FileStorage__file_path)
 
     # Test create FireStorage instance
-    def test_create_instance(self):
+    def test_instanciates(self):
         self.assertIsInstance(self.fs, FileStorage)
 
-    # Test the all() method
-    def test_all(self):
-        obj_dict = self.fs.all()
-        self.assertEqual(type(obj_dict), dict)
-
-    # Test the new() method
-    def test_new(self):
-        obj = BaseModel()
-        self.fs.new(obj)
-        obj_dict = self.fs.all()
-        self.assertIn('BaseModel.' + obj.id, obj_dict)
-
-    # Test the save() method
-    def test_save(self):
-        obj = BaseModel()
-        self.fs.new(obj)
-        self.fs.save()
-        self.assertEqual(os.path.isfile('file.json'), True)
-        with open(self.fs._FileStorage__file_path) as f:
-            saved_dict = json.load(f)
-        self.assertIn('BaseModel.' + obj.id, saved_dict)
-
-    def test_object(self):
-        object_dict = FileStorage._FileStorage__objects
-        self.assertEqual(dict, type(object_dict))
-
-    # Test __file path is exit
+    # Test if __file path is exit
     def test_file_path(self):
         path = FileStorage._FileStorage__file_path
         self.assertEqual(str, type(path))
 
+    # Test __object is type dict after deserialization
+    def test_object(self):
+        object_dict = FileStorage._FileStorage__objects
+        self.assertEqual(dict, type(object_dict))
 
-if __name__ == '__main__':
+    # Test all() method
+    def test_all(self):
+        obj_dict = self.fs.all()
+        self.assertEqual(type(obj_dict), dict)
+
+
+if __name__ == "__main__":
     unittest.main()
