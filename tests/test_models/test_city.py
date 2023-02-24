@@ -11,4 +11,4 @@ class Test_City(unittest.TestCase):
         city = City()
         self.assertEqual("", city.name)
 
-        self.assertEquam("", city.state_id)
+        self.assertEqual("", city.state_id)
