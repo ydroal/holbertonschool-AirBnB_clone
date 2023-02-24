@@ -18,7 +18,7 @@ Ex: A new user; a new place...
 
 ## A macro view of the flow of a run from console command
 
-![SERVER SIDE: BACK-END](/AirBnB/Pictures/Back-End3.png)
+![SERVER SIDE: BACK-END](https://github.com/bapt2/holbertonschool-AirBnB_clone/blob/master/models/Pictures/Back-End.png)
 
 
 `In order to answer this main question (What's a command interpreter?), 
