@@ -55,15 +55,14 @@ class Test_FileStorage(unittest.TestCase):
 
     # Test the reload() method
     def test_reload(self):
+        """ test for file storage reloading """
         self.fs.save()
-        storage.reload()
-
-        x = self.fs.__objects.keys()
-        y = storage.__objects.keys()
-
-        self.assertTrue(x == y)
+        s = FileStorage()
+        s.reload()
+        kx = s.all().keys()
+        ky = self.fs.all().keys()
+        self.assertTrue(kx, ky)
 
 
 if __name__ == "__main__":
     unittest.main()
-
