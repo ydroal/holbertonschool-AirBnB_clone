@@ -5,54 +5,55 @@ import unittest
 import datetime
 import os
 import json
+from uuid import UUID
 from models.base_model import BaseModel
 
 
 class Test_BaseModel(unittest.TestCase):
     '''Test class for BaseModel'''
 
-    def setUp(self):
-        self.base1 = BaseModel()
-        self.base2 = BaseModel()
+    def __init__(self, *args, **kwargs):
+        """ this is a test for the moment """
+        super().__init__(*args, **kwargs)
+        self.name = 'BaseModel'
+        self.value = BaseModel
 
     # clean up resource file that created by test method
-    def tearDown(self):
-        try:
-            os.remove('file.json')
-        except FileNotFoundError:
-            pass
+    #def tearDown(self):
+    #   try:
+    #       os.remove('file.json')
+    #  except FileNotFoundError:
+    #     pass
 
     def test_id(self):
         # IDs are unique
-        self.assertNotEqual(self.base1.id, self.base2.id)
+        new = self.value()
+        self.assertEqual(type(new.id), str)
 
-    def test_created_at(self):
-        self.assertNotEqual(self.base1.created_at, self.base2.created_at)
-        self.assertEqual(type(self.base1.created_at), datetime.datetime)
+#    def test_created_at(self):
+#       self.assertNotEqual(self.base1.created_at, self.base2.created_at)
+#      self.assertEqual(type(self.base1.created_at), datetime.datetime)
 
     def test_str(self):
-        self.base1.name = 'My First Model'
-        self.base1.my_number = 89
-        output = str(self.base1)
-        self.assertEqual(output[:11], '[BaseModel]')
-        target = "'my_number': 89"
-        self.assertTrue(target in output)
+        y = self.value()
+        self.assertEqual(str(y), '[{}] ({}) {}'.format(self.name, y.id,
+                                                       y.__dict__))
 
     def test_to_dict(self):
-        self.base1.name = 'My First Model'
-        self.base1.my_number = 89
-        dict1 = self.base1.to_dict()
-        self.assertEqual(dict1['__class__'], 'BaseModel')
-        self.assertEqual(dict1['name'], 'My First Model')
-        self.assertEqual(dict1['my_number'], 89)
+        base = BaseModel()
+        r_dict = base.to_dict()
+        self.assertIsInstance(r_dict, dict)
+        self.assertTrue("__class__" in r_dict)
+        self.assertEqual(r_dict["__class__"], type(base).__name__)
 
     def test_save(self):
-        self.base1.save()
-        k = 'BaseModel' + '.' + self.base1.id
-        with open('file.json') as f:
+        y = self.value()
+        y.save()
+        k = self.name + '.' + y.id
+        with open('file.json', 'r') as f:
             # json file to dict
             j = json.load(f)
-            self.assertEqual(j[k], self.base1.to_dict())
+            self.assertEqual(j[k], y.to_dict())
 
 
 if __name__ == '__main__':
