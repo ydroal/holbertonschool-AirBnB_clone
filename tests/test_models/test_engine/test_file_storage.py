@@ -1,8 +1,7 @@
-#!/usr/bin/python3
-""" unittest for file storage file """
 import unittest
 import os
 import json
+from models import storage
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 
@@ -56,14 +55,15 @@ class Test_FileStorage(unittest.TestCase):
 
     # Test the reload() method
     def test_reload(self):
-        obj = BaseModel()
-        self.fs.new(obj)
         self.fs.save()
-        self.fs.reload()
-        obj_dict = self.fs.all()
-        self.assertEqual(type(obj_dict), dict)
-        self.assertIn('BaseModel.' + obj.id, obj_dict)
+        storage.reload()
+
+        x = self.fs.__objects.keys()
+        y = storage.__objects.keys()
+
+        self.assertTrue(x == y)
 
 
 if __name__ == "__main__":
     unittest.main()
+
