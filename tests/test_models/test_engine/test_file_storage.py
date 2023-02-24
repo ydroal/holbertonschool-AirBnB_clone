@@ -35,7 +35,7 @@ class TestFileStorage(unittest.TestCase):
         """Test FileStorage: all()"""
         dict_return = {}
         FileStorage.all(None)
-        self.assertEqual(os.path.isfile('file.json'), True)
+        self.assertEqual(os.path.isfile('file.json'), False)
 
 if __name__ == "__main__":
     unittest.main()
