@@ -143,7 +143,7 @@ with open("fichier.json", "w") as f:
 
 ### **`D - `** **How to Start it**
 The program starts when the **`console.py`** file is executed as we can see in this example below:
-![START CMD](/AirBnB/Pictures/Start_Console.png)
+![START CMD](https://github.com/bapt2/holbertonschool-AirBnB_clone/blob/master/models/Pictures/Start_Console.png)
 ### **`E - `** **One of possible Use Case of the Console**
 Let's see what happens when you want to create a new object using the **`creat`** command, Example: **`creat`** _BaseModel2_
 ![USE CASE](https://github.com/bapt2/holbertonschool-AirBnB_clone/blob/master/models/Pictures/Cmd_flow.png)
