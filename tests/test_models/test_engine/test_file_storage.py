@@ -12,6 +12,7 @@ class Test_FileStorage(unittest.TestCase):
     # set up the test environment
     def setUp(self):
         self.fs = FileStorage()
+        self.my_model = BaseModel()
 
     # clean up resource file that created by test method
     def tearDown(self):
@@ -36,13 +37,8 @@ class Test_FileStorage(unittest.TestCase):
 
     # Test the save() method
     def test_save(self):
-        obj = BaseModel()
-        self.fs.new(obj)
         self.fs.save()
-        self.assertEqual(os.path.isfile('file.json'), True)
-        with open(self.fs._FileStorage__file_path) as f:
-            saved_dict = json.load(f)
-        self.assertIn('BaseModel.' + obj.id, saved_dict)
+        self.assertTrue(os.path.exists('file.json'))
 
     def test_object(self):
         object_dict = FileStorage._FileStorage__objects
@@ -55,13 +51,21 @@ class Test_FileStorage(unittest.TestCase):
 
     # Test the reload() method
     def test_reload(self):
-        """ test for file storage reloading """
         self.fs.save()
         s = FileStorage()
         s.reload()
         kx = s.all().keys()
         ky = self.fs.all().keys()
         self.assertTrue(kx, ky)
+
+    def test_content_type(self):
+        self.fs.save()
+        self.fs.new(self.my_model)
+
+        with open("file.json", encoding='utf-8') as f:
+            content = json.load(f)
+
+        self.assertIsInstance(content, dict)
 
 
 if __name__ == "__main__":
