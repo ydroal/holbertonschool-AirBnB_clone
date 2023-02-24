@@ -146,7 +146,7 @@ The program starts when the **`console.py`** file is executed as we can see in t
 ![START CMD](/AirBnB/Pictures/Start_Console.png)
 ### **`E - `** **One of possible Use Case of the Console**
 Let's see what happens when you want to create a new object using the **`creat`** command, Example: **`creat`** _BaseModel2_
-![USE CASE](/AirBnB/Pictures/Cmd_flow.png)
+![USE CASE](https://github.com/bapt2/holbertonschool-AirBnB_clone/blob/master/models/Pictures/Cmd_flow.png)
 
 #
 
