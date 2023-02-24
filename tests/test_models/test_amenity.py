@@ -5,7 +5,8 @@ from models.amenity import Amenity
 import unittest
 
 
-def Test_Amenity(unitest.TestCase):
+class Test_Amenity(unitest.TestCase):
     """ unittest for amenity class """
-    amenity = Amenity()
-    self.assertEqual("", amenity.name)
+    def test_amenity(self):
+        amenity = Amenity()
+        self.assertEqual("", amenity.name)
