@@ -1,41 +1,41 @@
+#!/usr/bin/python3
+"""Unit tests for FileStorage class"""
+
+
 import unittest
-import os
-import json
-from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
+import os
+from models.base_model import BaseModel
+import json
+import models
+from models.user import User
 
 
-class Test_FileStorage(unittest.TestCase):
-    '''Test class for BaseModel'''
+class TestFileStorage(unittest.TestCase):
+    """Unittests for FileStorage"""
 
-    # set up the test environment
-    def setUp(self):
-        self.fs = FileStorage()
+    my_model = BaseModel()
 
-    # clean up resource file that created by test method
-    def tearDown(self):
-        if os.path.exists(self.fs._FileStorage__file_path):
-            os.remove(self.fs._FileStorage__file_path)
-
-    # Test create FireStorage instance
     def test_instanciates(self):
-        self.assertIsInstance(self.fs, FileStorage)
+        "Tests that FileStorage correctly instanciates"
+        storage = FileStorage()
+        self.assertIsInstance(storage, FileStorage)
 
-    # Test if __file path is exit
     def test_file_path(self):
+        """Test __file path is exited"""
         path = FileStorage._FileStorage__file_path
         self.assertEqual(str, type(path))
 
-    # Test __object is type dict after deserialization
     def test_object(self):
+        """Test __object is type dict after deserialization object - dict"""
         object_dict = FileStorage._FileStorage__objects
         self.assertEqual(dict, type(object_dict))
 
-    # Test all() method
     def test_all(self):
-        obj_dict = self.fs.all()
-        self.assertEqual(type(obj_dict), dict)
-
+        """Test FileStorage: all()"""
+        dict_return = {}
+        FileStorage.all(None)
+        self.assertEqual(os.path.isfile('file.json'), True)
 
 if __name__ == "__main__":
     unittest.main()
