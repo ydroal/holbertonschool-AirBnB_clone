@@ -1,7 +1,6 @@
 # `Python - AirBnB `  :dart:
 
-## `Creation of a command interpreter in Python using` 
-## `the cmd module, in order to manage the Back-End part`
+## `Creation of a command interpreter in Python using the cmd module, in order to manage the Back-End part`
 ## **What's a command interpreter?**
 It is an environment that allows us to manage the different objects involved in the project. 
 It allows to:
@@ -138,7 +137,7 @@ with open("fichier.json", "w") as f:
 #
 ## `A broader view of the Back-End with the different Objects`
 
-![SERVER SIDE: BACK-END](/AirBnB/Pictures/Vue_generale_cmd.png)
+![SERVER SIDE: BACK-END](https://github.com/bapt2/holbertonschool-AirBnB_clone/blob/master/models/Pictures/Back-End3.png)
 
 #
 
