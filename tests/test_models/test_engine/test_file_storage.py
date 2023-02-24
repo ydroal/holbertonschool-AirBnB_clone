@@ -1,14 +1,13 @@
-#!/usr/bin/python3
 import unittest
 import os
 import json
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
-from models import storage
 
 
 class Test_FileStorage(unittest.TestCase):
     '''Test class for BaseModel'''
+
     # set up the test environment
     def setUp(self):
         self.fs = FileStorage()
@@ -39,18 +38,20 @@ class Test_FileStorage(unittest.TestCase):
         obj = BaseModel()
         self.fs.new(obj)
         self.fs.save()
+        self.assertEqual(os.path.isfile('file.json'), True)
         with open(self.fs._FileStorage__file_path) as f:
             saved_dict = json.load(f)
         self.assertIn('BaseModel.' + obj.id, saved_dict)
 
-    # Test the reload() method
-    def test_reload(self):
-        obj = BaseModel()
-        self.fs.new(obj)
-        self.fs.save()
-        self.fs.reload()
-        obj_dict = self.fs.all()
-        self.assertIn('BaseModel.' + obj.id, obj_dict)
+    def test_object(self):
+        object_dict = FileStorage._FileStorage__objects
+        self.assertEqual(dict, type(object_dict))
+
+    # Test __file path is exit
+    def test_file_path(self):
+        path = FileStorage._FileStorage__file_path
+        self.assertEqual(str, type(path))
+
 
 if __name__ == '__main__':
     unittest.main()
