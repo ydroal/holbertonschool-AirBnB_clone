@@ -13,33 +13,25 @@ class Test_BaseModel(unittest.TestCase):
     '''Test class for BaseModel'''
 
     def __init__(self, *args, **kwargs):
-        """ this is a test for the moment """
+        """ This ensures that the parent class is initialized correctly """
         super().__init__(*args, **kwargs)
         self.name = 'BaseModel'
         self.value = BaseModel
 
-    # clean up resource file that created by test method
-    #def tearDown(self):
-    #   try:
-    #       os.remove('file.json')
-    #  except FileNotFoundError:
-    #     pass
 
     def test_id(self):
-        # IDs are unique
+        "testing id"
         new = self.value()
         self.assertEqual(type(new.id), str)
 
-#    def test_created_at(self):
-#       self.assertNotEqual(self.base1.created_at, self.base2.created_at)
-#      self.assertEqual(type(self.base1.created_at), datetime.datetime)
-
     def test_str(self):
+        """ testing str """
         y = self.value()
         self.assertEqual(str(y), '[{}] ({}) {}'.format(self.name, y.id,
                                                        y.__dict__))
 
     def test_to_dict(self):
+        """ testing to_dict """
         base = BaseModel()
         r_dict = base.to_dict()
         self.assertIsInstance(r_dict, dict)
@@ -47,6 +39,7 @@ class Test_BaseModel(unittest.TestCase):
         self.assertEqual(r_dict["__class__"], type(base).__name__)
 
     def test_save(self):
+        """ testing save """
         y = self.value()
         y.save()
         k = self.name + '.' + y.id
